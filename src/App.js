@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { Button, Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import InstagramEmbed from 'react-instagram-embed';
 
 import './App.css';
 import Post from './components/Post';
 import ImageUpload from './components/ImageUpload';
-import { db, auth, storage } from './firebase';
+import { db, auth } from './firebase';
 
 function getModalStyle() {
   const top = 50;
@@ -180,23 +181,44 @@ function App() {
 
       <h1>Jimmy's IG Clone</h1>
 
-      {/* Loop through the posts */}
-      {
-        posts.map(({ id, post }) => (
-          <Post 
-            key={id}
-            caption={post.caption}
-            imageUrl={post.imageUrl} 
-            username={post.username}
-          />
-        ))
-      }
-
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ): (
         <h3>Sorry you need to login to upload</h3>
       )}
+
+      <div className="app__posts">
+        <div className="app__postsLeft">
+          {/* Loop through the posts */}
+          {
+            posts.map(({ id, post }) => (
+              <Post 
+                key={id}
+                postId={id}
+                user={user}
+                caption={post.caption}
+                imageUrl={post.imageUrl} 
+                username={post.username}
+              />
+            ))
+          }
+        </div>
+        <div className="app__postsRight">
+          <InstagramEmbed
+            url='https://instagram.com/p/B_uf9dmAGPw/'
+            clientAccessToken='123|456'
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+          />
+        </div>
+      </div>
 
       {/* Posts */}
       {/* <Post 

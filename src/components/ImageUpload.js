@@ -23,7 +23,9 @@ function ImageUpload({ username }) {
             "state_changed",
             (snapshot) => {
                 // progress function
-                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes * 100));
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes * 100)
+                );
                 setProgress(progress);
             },
             (error) => {
@@ -68,7 +70,7 @@ function ImageUpload({ username }) {
                 type="text" 
                 placeholder="Enter a caption..."
                 onChange={event => setCaption(event.target.value)}
-                // value={}
+                value={caption}
             />
             <input 
                 type="file" 
