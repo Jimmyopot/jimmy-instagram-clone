@@ -1,13 +1,16 @@
 import firebase from "firebase";
+import dotenv from 'dotenv';
+ 
+dotenv.config()
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyA54ZXNCC6F3b4yRgVoRdxez1WSFY6KVDI",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "jimmy-instagram-clone.firebaseapp.com",
     projectId: "jimmy-instagram-clone",
     storageBucket: "jimmy-instagram-clone.appspot.com",
-    messagingSenderId: "804491575231",
-    appId: "1:804491575231:web:98293a4f16cb96eb98ab0a",
-    measurementId: "G-ZXN6MDF412"
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 
 const db = firebaseApp.firestore();
