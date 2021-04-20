@@ -18,3 +18,22 @@ const auth = firebase.auth();  // authentication
 const storage = firebase.storage();  // static files-> photos
 
 export { db, auth, storage };
+
+
+
+// service cloud.firestore {
+//     match /databases/{database}/documents {
+//       match /{document=**} {
+//         allow read: if isLoggedIn();
+//         allow create: if isLoggedIn() && isValidMessage();
+//         allow update, delete: if false;
+//       }
+//     }
+//     function isLoggedIn() {
+        //    return request.auth != null;
+// }
+//     function isValidMessage() {
+        //    return request.resource.data.uid == request.auth.uid;
+// }
+// 
+//   }
